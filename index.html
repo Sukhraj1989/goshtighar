@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>गोष्टीघर — मराठी गोष्टी</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;700&family=Tiro+Devanagari+Marathi:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F1F6F3;
+  --surface: #FFFFFF;
+  --ink: #16211F;
+  --muted: #4F625C;
+  --line: #C9D7D1;
+  --green: #0F4C45;
+  --gold: #E3A21A;
+  --hero-bg: #0F4C45;
+  --hero-ink: #F4F8F5;
+  --hero-muted: #B9D2CA;
+  --c-bal: #E3A21A;  --f-bal: #2A1D00;
+  --c-bodh: #0F4C45; --f-bodh: #F4F8F5;
+  --c-lok: #9C1F55;  --f-lok: #FFF4F8;
+  --c-vin: #1F4E8C;  --f-vin: #F2F7FF;
+  --fs: 1.3rem;
+  color-scheme: light;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0E1715; --surface: #16231F; --ink: #E8F0EC; --muted: #9DB2AA; --line: #2A3C36;
+    --hero-bg: #0A3833; --hero-ink: #F1F7F4; --hero-muted: #A9C7BD;
+    --c-bal: #D49A17; --f-bal: #1E1500;
+    --c-bodh: #17695E; --f-bodh: #F4F8F5;
+    --c-lok: #B02A68; --f-lok: #FFF4F8;
+    --c-vin: #2F63A8; --f-vin: #F2F7FF;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0E1715; --surface: #16231F; --ink: #E8F0EC; --muted: #9DB2AA; --line: #2A3C36;
+  --hero-bg: #0A3833; --hero-ink: #F1F7F4; --hero-muted: #A9C7BD;
+  --c-bal: #D49A17; --f-bal: #1E1500;
+  --c-bodh: #17695E; --f-bodh: #F4F8F5;
+  --c-lok: #B02A68; --f-lok: #FFF4F8;
+  --c-vin: #2F63A8; --f-vin: #F2F7FF;
+  color-scheme: dark;
+}
+html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+*, *::before, *::after { box-sizing: inherit; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Mukta", "Noto Sans Devanagari", system-ui, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+.serif { font-family: "Tiro Devanagari Marathi", "Noto Serif Devanagari", Georgia, serif; }
+a { color: inherit; }
+button { font: inherit; color: inherit; cursor: pointer; }
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+
+/* header */
+.top { background: var(--hero-bg); color: var(--hero-ink); }
+.top-in { max-width: 70rem; margin: 0 auto; padding: .9rem 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.brand { font-size: 1.7rem; text-decoration: none; line-height: 1.2; }
+.icon-btn { background: transparent; border: 1.5px solid var(--hero-muted); color: var(--hero-ink); border-radius: 999px; min-width: 2.6rem; height: 2.6rem; padding: 0 .8rem; font-weight: 600; }
+.icon-btn:hover { background: rgba(255,255,255,.12); }
+
+/* paithani-style woven strip */
+.weave {
+  height: 16px;
+  background:
+    linear-gradient(135deg, var(--gold) 25%, transparent 25%) -8px 0 / 16px 16px,
+    linear-gradient(225deg, var(--gold) 25%, transparent 25%) -8px 0 / 16px 16px,
+    linear-gradient(315deg, var(--gold) 25%, transparent 25%) 0 0 / 16px 16px,
+    linear-gradient(45deg, var(--gold) 25%, var(--hero-bg) 25%) 0 0 / 16px 16px;
+}
+
+/* hero */
+.hero { background: var(--hero-bg); color: var(--hero-ink); position: relative; overflow: hidden; }
+.hero-in { max-width: 70rem; margin: 0 auto; padding: 2.5rem 1.25rem 3.2rem; position: relative; }
+.hero-note { margin: 0 0 .6rem; color: var(--hero-muted); font-weight: 600; }
+.hero h1 { margin: 0; font-weight: 400; font-size: clamp(2.4rem, 7vw, 4.6rem); line-height: 1.25; max-width: 15ch; }
+.hero p.sum { max-width: 34rem; margin: 1rem 0 1.6rem; color: var(--hero-muted); font-size: 1.15rem; }
+.btn { display: inline-block; background: var(--gold); color: #2A1D00; text-decoration: none; font-weight: 700; padding: .7rem 1.4rem; border-radius: 4px; border: 0; }
+.btn:hover { filter: brightness(1.07); }
+.hero-glyph { position: absolute; right: .5rem; bottom: -1.5rem; font-size: clamp(9rem, 28vw, 20rem); line-height: 1; color: var(--gold); opacity: .22; pointer-events: none; user-select: none; }
+
+/* browse */
+.wrap { max-width: 70rem; margin: 0 auto; padding: 1.75rem 1.25rem 3rem; }
+.tools { display: flex; flex-wrap: wrap; gap: .75rem 1rem; align-items: center; margin-bottom: 1.5rem; }
+.chips { display: flex; flex-wrap: wrap; gap: .5rem; flex: 1 1 auto; }
+.chip { background: transparent; border: 1.5px solid var(--line); border-radius: 999px; padding: .3rem 1rem; font-weight: 600; }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.search { flex: 0 1 16rem; min-width: 11rem; padding: .5rem .9rem; border: 1.5px solid var(--line); border-radius: 4px; background: var(--surface); color: var(--ink); font: inherit; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(16.5rem, 1fr)); gap: 1rem; }
+.tile { position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; min-height: 14rem; padding: 1.2rem; border-radius: 6px; text-decoration: none; transition: transform .15s ease; }
+.tile:hover { transform: translateY(-3px); }
+.tile .g { position: absolute; top: -.1em; right: .6rem; font-size: 7.5rem; line-height: 1.15; opacity: .22; pointer-events: none; }
+.tile h2 { margin: 0 0 .4rem; font-weight: 400; font-size: 1.65rem; line-height: 1.3; position: relative; }
+.tile p { margin: 0 0 .9rem; font-size: .98rem; line-height: 1.5; opacity: .92; position: relative; }
+.tile .meta { display: flex; gap: 1rem; font-weight: 600; font-size: .92rem; position: relative; }
+.cat-bal { background: var(--c-bal); color: var(--f-bal); }
+.cat-bodh { background: var(--c-bodh); color: var(--f-bodh); }
+.cat-lok { background: var(--c-lok); color: var(--f-lok); }
+.cat-vin { background: var(--c-vin); color: var(--f-vin); }
+.empty { padding: 2.5rem 0; color: var(--muted); font-size: 1.1rem; }
+
+/* reader */
+.reader-bar { max-width: 70rem; margin: 0 auto; padding: 1rem 1.25rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.back { text-decoration: underline; text-underline-offset: 4px; font-weight: 600; background: none; border: 0; padding: .3rem 0; }
+.sizer { display: flex; gap: .5rem; }
+.sizer button { border: 1.5px solid var(--line); background: var(--surface); border-radius: 4px; min-width: 2.8rem; height: 2.6rem; font-weight: 700; }
+article.story { max-width: 38rem; margin: 0 auto; padding: 1rem 1.25rem 2rem; }
+.badge { display: inline-block; padding: .15rem .8rem; border-radius: 999px; font-weight: 600; font-size: .95rem; }
+.story h1 { font-weight: 400; font-size: clamp(2.2rem, 6vw, 3.3rem); line-height: 1.3; margin: .8rem 0 .4rem; }
+.story .rt { color: var(--muted); margin: 0 0 2rem; }
+.story .body p { font-size: var(--fs); line-height: 2; margin: 0 0 1.15em; }
+.moral { margin-top: 2rem; padding: 1rem 1.2rem; border-left: 5px solid var(--moral, var(--gold)); background: var(--surface); }
+.moral b { display: block; margin-bottom: .2rem; }
+.moral p { margin: 0; font-size: 1.2rem; line-height: 1.8; }
+.next { max-width: 38rem; margin: 0 auto; padding: 0 1.25rem 3.5rem; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.next a { flex: 1 1 14rem; text-decoration: none; border: 1.5px solid var(--line); background: var(--surface); border-radius: 6px; padding: .8rem 1rem; }
+.next a:hover { border-color: var(--ink); }
+.next small { display: block; color: var(--muted); }
+.next .t { font-size: 1.3rem; line-height: 1.4; }
+
+footer { border-top: 1px solid var(--line); color: var(--muted); text-align: center; padding: 1.5rem 1.25rem 2rem; }
+[hidden] { display: none !important; }
+@media (prefers-reduced-motion: reduce) { .tile { transition: none; } .tile:hover { transform: none; } }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-in">
+    <a class="brand serif" href="#" id="brand">गोष्टीघर</a>
+    <button class="icon-btn" id="themeBtn" type="button" aria-label="उजळ किंवा गडद रंगसंगती बदला">☾</button>
+  </div>
+</header>
+
+<main>
+  <!-- Home -->
+  <section id="home">
+    <div class="hero">
+      <div class="hero-in">
+        <p class="hero-note">आजची गोष्ट</p>
+        <h1 class="serif" id="heroTitle"></h1>
+        <p class="sum" id="heroSum"></p>
+        <a class="btn" id="heroBtn" href="#">आजची गोष्ट वाचा</a>
+        <div class="hero-glyph serif" id="heroGlyph" aria-hidden="true"></div>
+      </div>
+    </div>
+    <div class="weave" aria-hidden="true"></div>
+
+    <div class="wrap">
+      <div class="tools">
+        <div class="chips" id="chips"></div>
+        <input class="search" id="search" type="search" placeholder="गोष्ट शोधा" aria-label="गोष्ट शोधा">
+      </div>
+      <div class="grid" id="grid"></div>
+      <p class="empty" id="empty" hidden>या शोधासाठी गोष्ट सापडली नाही. वेगळा शब्द वापरून पाहा.</p>
+    </div>
+  </section>
+
+  <!-- Reader -->
+  <section id="reader" hidden>
+    <div class="weave" aria-hidden="true"></div>
+    <div class="reader-bar">
+      <button class="back" id="backBtn" type="button">सर्व गोष्टींकडे परत जा</button>
+      <div class="sizer" role="group" aria-label="अक्षराचा आकार">
+        <button type="button" id="smaller" aria-label="अक्षर लहान करा">अ−</button>
+        <button type="button" id="bigger" aria-label="अक्षर मोठे करा">अ+</button>
+      </div>
+    </div>
+    <article class="story" id="story"></article>
+    <nav class="next" id="next" aria-label="इतर गोष्टी"></nav>
+  </section>
+</main>
+
+<footer>गोष्टीघर — रोज एक नवी मराठी गोष्ट</footer>
+
+<script>
+const CATS = {
+  bal:  { name: "बालकथा", cls: "cat-bal",  fg: "var(--f-bal)",  bg: "var(--c-bal)" },
+  bodh: { name: "बोधकथा", cls: "cat-bodh", fg: "var(--f-bodh)", bg: "var(--c-bodh)" },
+  lok:  { name: "लोककथा", cls: "cat-lok",  fg: "var(--f-lok)",  bg: "var(--c-lok)" },
+  vin:  { name: "विनोदी", cls: "cat-vin",  fg: "var(--f-vin)",  bg: "var(--c-vin)" }
+};
+
+const STORIES = [
+  {
+    id: 1, cat: "bal", title: "चिमणीचं घरटं", time: "२ मिनिटं",
+    sum: "वादळी रात्री एका चिमणीने आपल्या पिल्लांना कशी साथ दिली, त्याची गोष्ट.",
+    body: [
+      `एका मोठ्या वडाच्या झाडावर एक चिमणी आपल्या तीन पिल्लांसह राहत होती. दिवसभर ती दाणे गोळा करायची आणि संध्याकाळी पिल्लांना भरवायची.`,
+      `एका रात्री अचानक जोराचा वारा सुटला आणि पावसाच्या सरी कोसळू लागल्या. घरटं हलू लागलं. पिल्लं घाबरून चिवचिवू लागली.`,
+      `“घाबरू नका रे,” चिमणी म्हणाली. “मी इथेच आहे.” तिने आपले पंख पसरून तिन्ही पिल्लांना उबदार कुशीत घेतलं.`,
+      `रात्रभर पाऊस पडत राहिला. पहाटे तो थांबला आणि कोवळं ऊन पडलं. घरटं अर्धं मोडून गेलं होतं, पण पिल्लं सुखरूप होती.`,
+      `मग चिमणी आणि तिच्या पिल्लांनी मिळून काडी काडी गोळा केली आणि नवं घरटं बांधलं. यावेळी ते आधीपेक्षा जास्त मजबूत होतं.`
+    ],
+    moral: "संकटात एकमेकांची साथ असली, की संकटही लहान वाटू लागतं."
+  },
+  {
+    id: 2, cat: "bodh", title: "शेताचा खजिना", time: "३ मिनिटं",
+    sum: "वडिलांनी शेतात पुरून ठेवलेला खजिना तीन आळशी मुलांना सापडतो का?",
+    body: [
+      `एका गावात रामजी नावाचा शेतकरी राहत होता. त्याचे तिन्ही मुलगे आळशी होते. शेतात जायचं म्हटलं की त्यांना कंटाळा यायचा.`,
+      `रामजी म्हातारा झाला. शेवटच्या दिवसांत त्याने मुलांना जवळ बोलावून सांगितलं, “आपल्या शेतात मी मोठा खजिना पुरून ठेवला आहे. तो खणून काढा आणि वाटून घ्या.”`,
+      `वडील गेल्यावर मुलांनी शेत खणायला सुरुवात केली. दिवसामागून दिवस गेले. सगळं शेत खणून झालं, पण खजिना काही सापडला नाही.`,
+      `निराश होऊन ते बसले. इतक्यात पावसाळा आला. खणून भुसभुशीत झालेल्या जमिनीत त्यांनी बी पेरलं. त्या वर्षी इतकं पीक आलं, की कोठारं भरून गेली.`,
+      `तेव्हा मुलांना वडिलांच्या बोलण्याचा अर्थ कळला. खरा खजिना शेतातल्या कष्टातच दडलेला होता.`
+    ],
+    moral: "कष्ट हाच खरा खजिना आहे."
+  },
+  {
+    id: 3, cat: "lok", title: "पाटलाची म्हैस", time: "३ मिनिटं",
+    sum: "हरवलेली म्हैस आणणाऱ्या गुराख्याला पाटील बक्षीस देतो का?",
+    body: [
+      `एका गावात पाटलाची म्हैस हरवली. पाटलाने गावभर दवंडी पिटवली, “जो कोणी म्हैस शोधून आणेल, त्याला शंभर रुपये बक्षीस!”`,
+      `गुराखी सखाराम तीन दिवस रानोमाळ फिरला. शेवटी नदीकाठच्या काट्यांत अडकलेली म्हैस त्याला दिसली. त्याने तिला हळूच सोडवलं आणि थेट पाटलाच्या वाड्यावर आणलं.`,
+      `म्हैस पाहून पाटील खूश झाला, पण बक्षीस द्यायची वेळ येताच त्याचा लोभ जागा झाला. तो म्हणाला, “ही म्हैस तूच चोरली असणार! नाहीतर तुला सापडली कशी?”`,
+      `सखाराम शांतपणे म्हणाला, “पाटील, मग चला गावच्या पंचांपुढे.” पंचांनी सगळं ऐकून घेतलं आणि हसून म्हणाले, “पाटील, चोर चोरलेली म्हैस मालकाच्या दारात आणून उभी करत नाही. दिलेलं वचन पाळा.”`,
+      `पाटलाने लाजेने मान खाली घातली. त्याने शंभर रुपये तर दिलेच, वर सखारामला एक नवी शालही दिली.`
+    ],
+    moral: "प्रामाणिकपणाला कधी कधी उशीर लागतो, पण तो कधी हरत नाही."
+  },
+  {
+    id: 4, cat: "vin", title: "धोंडूमामांची छत्री", time: "२ मिनिटं",
+    sum: "छत्री विसरण्याची सवय असलेल्या धोंडूमामांची एक पावसाळी फजिती.",
+    body: [
+      `धोंडूमामांना छत्री विसरायची भारी सवय. उन्हाळ्यात ते छत्री घेऊन फिरायचे आणि पावसाळ्यात ती घरीच ठेवून निघायचे.`,
+      `एके दिवशी आभाळ काळ्या ढगांनी भरून आलं. मामी म्हणाल्या, “छत्री घेऊन जा.” मामा म्हणाले, “अगं, आज पाऊस पडणारच नाही!” आणि तसेच निघाले.`,
+      `बाजारात पोहोचताच धो धो पाऊस सुरू झाला. मामा एका दुकानाच्या आडोशाला उभे राहिले. शेजारी एक माणूस छत्री उघडून उभा होता. मामा म्हणाले, “वा! तुमची छत्री छान आहे. अगदी माझ्या छत्रीसारखीच!”`,
+      `तो माणूस हसून म्हणाला, “मामा, ही तुमचीच आहे. गेल्या आठवड्यात माझ्या दुकानात विसरून गेला होतात.”`,
+      `मामांनी छत्री घेतली आणि घराकडे निघाले. दारात मामी हसत उभ्या होत्या. “तुम्ही छत्री नेली नाहीत की पाऊस येतो, आणि छत्री मिळाली की पाऊस थांबतो!” खरंच, घराजवळ पोहोचेपर्यंत पाऊस थांबला होता.`
+    ],
+    moral: ""
+  },
+  {
+    id: 5, cat: "bal", title: "चांदोबाची शाळा", time: "२ मिनिटं",
+    sum: "सगळ्यांपेक्षा कमी चमकणारी चिंगी चांदणी एका रात्री कुणाच्या तरी कामी येते.",
+    body: [
+      `रात्र झाली की आकाशात चांदोबाची शाळा भरते. चांदोबा मुख्याध्यापक आहे आणि चांदण्या त्याच्या विद्यार्थिनी.`,
+      `त्यांच्यात एक छोटी चांदणी होती, चिंगी. ती इतरांपेक्षा कमी चमकायची, म्हणून तिला नेहमी वाटायचं, “मी काही कामाची नाही.”`,
+      `एका रात्री ढगांनी सगळं आकाश झाकून टाकलं. समुद्रात एक मच्छीमार वाट चुकला होता. त्याला दिशा दिसेना. तेवढ्यात ढगांच्या एका फटीतून चिंगी हळूच डोकावली.`,
+      `तिचा प्रकाश मंद होता, पण मच्छीमाराला तेवढा पुरेसा झाला. त्या मिणमिणत्या प्रकाशाच्या सोबतीने त्याला किनाऱ्याची वाट सापडली.`,
+      `दुसऱ्या रात्री चांदोबाने सगळ्या चांदण्यांसमोर चिंगीचं कौतुक केलं. त्या दिवसापासून चिंगी शाळेत कधीच उशिरा आली नाही.`
+    ],
+    moral: "प्रत्येकाचा प्रकाश वेगळा असतो, आणि तो कुणाच्या तरी कामी येतोच."
+  },
+  {
+    id: 6, cat: "bodh", title: "पायरीचा दगड", time: "२ मिनिटं",
+    sum: "दोन दगड, एक शिल्पकार आणि घाव सोसण्याची गोष्ट.",
+    body: [
+      `एका मंदिराच्या वाटेवर दोन दगड शेजारी शेजारी पडले होते. एके दिवशी एक शिल्पकार आला आणि त्याने त्यातल्या एका दगडावर छिन्नी-हातोडा चालवायला सुरुवात केली.`,
+      `दगड ओरडला, “थांब! खूप दुखतंय!” पण शिल्पकार थांबला नाही. शेजारचा दुसरा दगड म्हणाला, “मी तर कुणाला हात लावू देणार नाही.” शिल्पकाराने त्यालाही हात लावला नाही.`,
+      `पहिल्या दगडाने वेदना सहन केल्या. काही दिवसांनी तो सुंदर मूर्ती झाला आणि मंदिरात विराजमान झाला. दुसरा तसाच राहिला, म्हणून त्याला मंदिराची पायरी म्हणून बसवलं.`,
+      `लोक मूर्तीसमोर नतमस्तक होऊ लागले, फुलं वाहू लागले. पायरीचा दगड हे सगळं पाहत होता. तेवढ्यात मूर्ती हळूच म्हणाली, “मित्रा, तुझ्यावरूनच तर लोक माझ्यापर्यंत येतात.”`
+    ],
+    moral: "घडण्यासाठी घाव सोसावे लागतात, आणि प्रत्येकाचं आपापलं महत्त्व असतं."
+  },
+  {
+    id: 7, cat: "lok", title: "माकडाचा न्याय", time: "२ मिनिटं",
+    sum: "भाकरीच्या वाटणीसाठी भांडणाऱ्या दोन मांजरांना माकडाने कसा न्याय दिला?",
+    body: [
+      `दोन मांजरांना रस्त्यात एक मोठी भाकरी सापडली. “ही माझी!” “नाही, माझी!” असं म्हणत त्यांचं भांडण सुरू झालं.`,
+      `तिथून एक माकड चाललं होतं. मांजरं म्हणाली, “दादा, तूच आमच्यात न्याय कर.”`,
+      `माकडाने तराजू आणला. भाकरीचे दोन तुकडे करून त्याने दोन पारड्यांत ठेवले. एक पारडं जड झालं, म्हणून त्याने त्या तुकड्याचा एक घास खाल्ला. मग दुसरं जड झालं, तर त्यातलाही घास खाल्ला.`,
+      `असं करता करता भाकरी संपत आली. मांजरं घाबरून म्हणाली, “आमचे तुकडे द्या, आम्ही जातो.” माकड म्हणालं, “अरे, माझ्या न्यायाची फी नको का?” आणि उरलेले तुकडेही गट्टम केले.`,
+      `दोन्ही मांजरं रिकाम्या पोटी निघून गेली.`
+    ],
+    moral: "भांडणात नेहमी तिसऱ्याचाच फायदा होतो. आपसातले वाद आपणच मिटवावेत."
+  },
+  {
+    id: 8, cat: "vin", title: "आजीची रेसिपी", time: "२ मिनिटं",
+    sum: "पहिल्यांदाच पुरणपोळी करणारा नातू आणि माप न सांगणारी आजी.",
+    body: [
+      `सुजितला पहिल्यांदाच पुरणपोळी करायची होती. आजी गावी होती, म्हणून त्याने तिला फोन लावला.`,
+      `“आजी, डाळ किती घ्यायची?” “थोडी.” “थोडी म्हणजे किती?” “अरे, जितकी लागेल तितकी.” सुजितने डोकं खाजवलं.`,
+      `“आणि गूळ?” “अंदाजाने.” “डाळ किती वेळ शिजवायची?” “मऊ होईपर्यंत.” “ती मऊ कधी होते?” “जेव्हा होते तेव्हा!”`,
+      `शेवटी सुजितने सगळं अंदाजानेच केलं. पोळ्या थोड्या जाड झाल्या, दोन-तीन फाटल्या, पण घरभर वास मात्र छान दरवळला.`,
+      `त्याने एक पोळी फोटो काढून आजीला पाठवली. थोड्या वेळाने आजीचं उत्तर आलं, “वा रे माझ्या शहाण्या! आता कळलं का रेसिपी काय असते ती? माप नाही, अंदाज आणि प्रेम!”`
+    ],
+    moral: ""
+  }
+];
+
+/* ---------- helpers ---------- */
+const $ = (id) => document.getElementById(id);
+const glyph = (t) => { const m = t.match(/^[\u0905-\u0939][\u0900-\u0903\u093A-\u094F]*/); return m ? m[0] : t.charAt(0); };
+const root = document.documentElement;
+function safeGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+function safeSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+
+/* ---------- theme ---------- */
+function effectiveTheme() {
+  return root.dataset.theme || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+}
+function paintThemeBtn() { $("themeBtn").textContent = effectiveTheme() === "dark" ? "☀" : "☾"; }
+const savedTheme = safeGet("gh-theme");
+if (savedTheme === "dark" || savedTheme === "light") root.dataset.theme = savedTheme;
+$("themeBtn").addEventListener("click", () => {
+  const next = effectiveTheme() === "dark" ? "light" : "dark";
+  root.dataset.theme = next; safeSet("gh-theme", next); paintThemeBtn();
+});
+paintThemeBtn();
+
+/* ---------- font size ---------- */
+let fs = parseFloat(safeGet("gh-fs")) || 1.3;
+function applyFs() { fs = Math.min(1.9, Math.max(1.05, fs)); root.style.setProperty("--fs", fs + "rem"); safeSet("gh-fs", String(fs)); }
+$("smaller").addEventListener("click", () => { fs -= 0.1; applyFs(); });
+$("bigger").addEventListener("click", () => { fs += 0.1; applyFs(); });
+applyFs();
+
+/* ---------- home ---------- */
+let filter = "all", query = "";
+
+const dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
+const today = STORIES[dayOfYear % STORIES.length];
+$("heroTitle").textContent = today.title;
+$("heroSum").textContent = today.sum;
+$("heroBtn").href = "#katha-" + today.id;
+$("heroGlyph").textContent = glyph(today.title);
+
+function renderChips() {
+  const items = [["all", "सर्व"]].concat(Object.keys(CATS).map(k => [k, CATS[k].name]));
+  $("chips").innerHTML = items.map(([k, n]) =>
+    `<button class="chip" type="button" data-k="${k}" aria-pressed="${filter === k}">${n}</button>`).join("");
+}
+$("chips").addEventListener("click", (e) => {
+  const b = e.target.closest(".chip"); if (!b) return;
+  filter = b.dataset.k; renderChips(); renderGrid();
+});
+$("search").addEventListener("input", (e) => { query = e.target.value.trim(); renderGrid(); });
+
+function renderGrid() {
+  const q = query.toLowerCase();
+  const list = STORIES.filter(s =>
+    (filter === "all" || s.cat === filter) &&
+    (!q || s.title.toLowerCase().includes(q) || s.sum.toLowerCase().includes(q)));
+  $("grid").innerHTML = list.map(s => {
+    const c = CATS[s.cat];
+    return `<a class="tile ${c.cls}" href="#katha-${s.id}">
+      <span class="g serif" aria-hidden="true">${glyph(s.title)}</span>
+      <h2 class="serif">${s.title}</h2>
+      <p>${s.sum}</p>
+      <span class="meta"><span>${c.name}</span><span>${s.time}</span></span>
+    </a>`;
+  }).join("");
+  $("empty").hidden = list.length > 0;
+}
+
+/* ---------- reader ---------- */
+function renderStory(id) {
+  const i = STORIES.findIndex(s => s.id === id);
+  if (i < 0) return false;
+  const s = STORIES[i], c = CATS[s.cat];
+  const prev = STORIES[(i - 1 + STORIES.length) % STORIES.length];
+  const next = STORIES[(i + 1) % STORIES.length];
+  $("story").innerHTML = `
+    <span class="badge" style="background:${c.bg};color:${c.fg}">${c.name}</span>
+    <h1 class="serif">${s.title}</h1>
+    <p class="rt">वाचन वेळ: ${s.time}</p>
+    <div class="body serif">${s.body.map(p => `<p>${p}</p>`).join("")}</div>
+    ${s.moral ? `<div class="moral" style="--moral:${c.bg}"><b>तात्पर्य</b><p class="serif">${s.moral}</p></div>` : ""}`;
+  $("next").innerHTML = `
+    <a href="#katha-${prev.id}"><small>मागची गोष्ट</small><span class="t serif">${prev.title}</span></a>
+    <a href="#katha-${next.id}"><small>पुढची गोष्ट</small><span class="t serif">${next.title}</span></a>`;
+  document.title = s.title + " — गोष्टीघर";
+  return true;
+}
+
+$("backBtn").addEventListener("click", () => { location.hash = ""; });
+$("brand").addEventListener("click", (e) => { e.preventDefault(); location.hash = ""; });
+
+/* ---------- routing ---------- */
+function route() {
+  const m = location.hash.match(/^#katha-(\d+)$/);
+  if (m && renderStory(parseInt(m[1], 10))) {
+    $("home").hidden = true; $("reader").hidden = false;
+  } else {
+    $("reader").hidden = true; $("home").hidden = false;
+    document.title = "गोष्टीघर — मराठी गोष्टी";
+  }
+  window.scrollTo(0, 0);
+}
+window.addEventListener("hashchange", route);
+
+renderChips();
+renderGrid();
+route();
+</script>
+</body>
+</html>
